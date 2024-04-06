@@ -17,20 +17,20 @@ const Page = () => {
 
   return (
     <main className="flex h-[calc(100vh-146px)] items-center justify-center">
-      <Card width={'600px'}>
+      <Card>
         <div>
         <h1 className="text-3xl font-semibold text-center mb-6">Create Your Account</h1>
          <form onSubmit={onSubmit}>
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-6">
           <Input name={'name'} label={"Name"} placeholder={"Enter Name"}/>
           <Input name={'email'} label={"Email"} placeholder={"Enter Email"} type={"email"}/>
           <Input name={'password'} label={"Password"} placeholder={"Enter Password"} type={"password"}/>
           </div>
-          <ButtonPrimary label={"CREATE ACCOUNT"} type={'submit'} onClick/>
+          <button type={"submit"} className="w-full rounded-md bg-black py-3 mb-6 mt-8 font-semibold text-white" >CREATE ACCOUNT</button>
 
-          <div className="text-center">
-            <p>Have an account?</p> 
-            <Link href={'/sign-in'}>LOGIN</Link>
+          <div className="flex flex-row gap-2 justify-center items-center">
+            <p className="font-light">Have an account?</p> 
+            <Link className="text-sm" href={'/sign-in'}>LOGIN</Link>
           </div>
           </form>
         </div>

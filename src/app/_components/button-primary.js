@@ -7,7 +7,7 @@ const ButtonPrimary = ({label, type, onClick}) => {
 
   return (
     <>
-    <button type={type} onClick={onClick}  className="w-full rounded-md bg-black py-5 my-6 font-semibold transition hover:bg-white/20 text-white" >{label}</button>
+    <button type={type} onClick={onClick}  className="w-full rounded-md bg-black py-5 my-6 font-semibold text-white" >{label}</button>
     </>
   )
 }
