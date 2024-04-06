@@ -26,10 +26,10 @@ export default function RootLayout({
       <body className={`font-sans ${inter.variable}`}>
         <TRPCReactProvider>
           <Navbar/>
-          <div className="mt-16">
+          {/* <div className="mt-[146px]"> */}
 
           {children}
-          </div>
+          {/* </div> */}
           
           </TRPCReactProvider>
       </body>
