@@ -18,7 +18,7 @@ const Page = () => {
           </h1>
           <p className="font-light text-center">Enter the 8 digit code you have received on your email</p> 
           <form onSubmit={onSubmit}>
-            <p className="mt-10">Code</p>
+            <p className="font-light mt-10">Code</p>
             <div className="flex flex-row gap-3">
               <input className="border-slate-250 w-10 rounded-md border px-4 py-2 text-black" />
               <input className="border-slate-250 w-10 rounded-md border px-4 py-2 text-black" />{" "}
