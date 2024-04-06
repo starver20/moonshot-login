@@ -3,7 +3,7 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import SearchIcon from "@mui/icons-material/Search";
 const Navbar = () => {
   return (
-    <div className="fixed left-0 top-0 z-10 flex flex-col justify-center w-full gap-0">
+    <div className=" left-0 top-0 z-10 flex flex-col justify-center w-full gap-0">
         
     <div className="flex flex-col items-end justify-between bg-white p-4 gap-4">
         <div className="flex flex-row gap-4 font-light">
