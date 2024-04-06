@@ -3,6 +3,7 @@ import React from "react";
 import Card from "~/app/_components/card";
 import Input from "~/app/_components/Input";
 import Link from "next/link";
+import VisibilityRoundedIcon from "@mui/icons-material/VisibilityRounded";
 
 const Page = () => {
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -34,8 +35,6 @@ const Page = () => {
                 placeholder={"Enter Password"}
                 type={"password"}
               />
-
-            
             </div>
             <button
               type={"submit"}
@@ -46,7 +45,7 @@ const Page = () => {
 
             <div className="flex flex-row items-center justify-center gap-2">
               <p className="font-light">Don&apos;t have an account?</p>
-              <Link className="text-sm" href={"/sign-in"}>
+              <Link className="text-sm" href={"/sign-up"}>
                 SIGN UP
               </Link>
             </div>
