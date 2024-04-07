@@ -23,7 +23,12 @@ const Page = () => {
     onSuccess: (user) => {
       clearForm();
       toast.success("User logged in successfully")
+      if(!user.isVerified){
+        router.replace(`/verify-otp/${user.token}`)
+        return
+      }
       router.replace('/')
+      localStorage.setItem("userId", JSON.stringify(user.id));
       console.log("success", user);
     },
     onError: (err) => {

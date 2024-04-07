@@ -1,7 +1,13 @@
+"use client";
 import React from "react";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import SearchIcon from "@mui/icons-material/Search";
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import { useUser } from "../_context/user-context";
+import { useRouter } from "next/navigation";
 const Navbar = () => {
+  const router = useRouter();
+  const {state, dispatch} = useUser();
   return (
     <div className=" left-0 top-0 z-10 flex flex-col justify-center w-full gap-0">
         
@@ -9,7 +15,7 @@ const Navbar = () => {
         <div className="flex flex-row gap-4 font-light">
           <p>Help</p>
           <p>Orders & Returns</p>
-          <p>Hi, John</p>
+          {state.isLoggedIn ? <p>{`Hi, ${state.user.name}`}</p> : ''}
         </div>
 
         <div className="flex flex-row justify-between items-center w-full">
@@ -26,6 +32,13 @@ const Navbar = () => {
       <div className="flex flex-row gap-4" >
           <SearchIcon />
           <ShoppingCartOutlinedIcon />
+          {state.isLoggedIn && <ExitToAppIcon onClick={() =>{
+            dispatch({type: 'removeUser'})
+            localStorage.removeItem("userId")
+            router.refresh();
+        }
+        }
+           />}
       </div>
     </div>
 

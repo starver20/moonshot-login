@@ -23,7 +23,7 @@ const Page = () => {
 
 
 // Used to seed the database
-  const seedDb = api.auth.seedDb.useMutation({
+  const seedDb = api.products.seedDb.useMutation({
     onSuccess: async () => {
       router.refresh();
     },
