@@ -5,6 +5,7 @@ import { Inter } from "next/font/google";
 import { TRPCReactProvider } from "~/trpc/react";
 import Navbar from "./_components/navbar";
 import { Toaster } from 'react-hot-toast';
+import { UserProvider } from "./_context/user-context";
 
 
 const inter = Inter({
@@ -18,6 +19,8 @@ export const metadata = {
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
+
+
 export default function RootLayout({
   children,
 }: {
@@ -28,12 +31,12 @@ export default function RootLayout({
       <body className={`font-sans ${inter.variable}`}>
       <Toaster position="bottom-center"/>
         <TRPCReactProvider>
+          <UserProvider>
           <Navbar/>
-          {/* <div className="mt-[146px]"> */}
 
           {children}
-          {/* </div> */}
           
+          </UserProvider>
           </TRPCReactProvider>
       </body>
     </html>

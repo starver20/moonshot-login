@@ -1,9 +1,6 @@
 import { z } from "zod";
-import type { User } from "@prisma/client";
-
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 import { TRPCError } from "@trpc/server";
-import { faker } from "@faker-js/faker";
 import { v4 as uuidv4 } from "uuid";
 import {
   comparePasswords,
@@ -12,16 +9,6 @@ import {
 } from "~/app/utils/common";
 
 export const authRouter = createTRPCRouter({
-  seedDb: publicProcedure.mutation(async ({ ctx }) => {
-    for (let i = 0; i < 100; i++) {
-      await ctx.db.product.create({
-        data: {
-          name: faker.commerce.product(),
-        },
-      });
-    }
-  }),
-
   signup: publicProcedure
     .input(
       z.object({
@@ -101,7 +88,7 @@ export const authRouter = createTRPCRouter({
         });
       }
       // incase email service doesnt work testing can be continued using 00000000 as otp
-      if (input.otp === "00000000" || user.otp !== input.otp) {
+      if (input.otp === "00000000" || user.otp === input.otp) {
         await ctx.db.user.update({
           where: { token: input.token },
           data: {
@@ -112,6 +99,7 @@ export const authRouter = createTRPCRouter({
           name: user.name,
           products: await ctx.db.product.findMany(),
           email: user.email,
+          id: user.id,
         };
       } else {
         throw new TRPCError({
@@ -119,5 +107,26 @@ export const authRouter = createTRPCRouter({
           message: "Incorrect OTP",
         });
       }
+    }),
+
+    getUserInfo: publicProcedure
+    .input(z.object({ id: z.number() }))
+    .query(async ({ ctx, input }) => {
+      console.log(input.id)
+      const user = await ctx.db.user.findUnique({
+        where: { id: input.id },
+      });
+      if (!user) {
+        throw new TRPCError({
+          code: "BAD_REQUEST",
+          message: "Invalid Token",
+        });
+      }
+      return {
+        name: user.name,
+        products: await ctx.db.product.findMany(),
+        email: user.email,
+        id: user.id,
+      };;
     }),
 });
