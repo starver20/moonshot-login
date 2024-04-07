@@ -16,6 +16,9 @@ const Page = ({params:{slug}}:{params:{slug:string}}) => {
       toast.success("OTP verified successfully, sign in to continue")
       router.replace('/sign-in')
       console.log(user);
+    },
+    onError: (err) => {
+      toast.error('Invalid OTP, please check and try again')
     }
   });
 
