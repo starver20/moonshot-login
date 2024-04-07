@@ -55,7 +55,7 @@ const Page = () => {
                 placeholder={"Enter Email"}
                 type={"email"}
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
               />
               <Input
                 disabled={isLoggingIn}
@@ -64,7 +64,7 @@ const Page = () => {
                 placeholder={"Enter Password"}
                 type={"password"}
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
               />
             </div>
             <button

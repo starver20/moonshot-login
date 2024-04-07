@@ -49,14 +49,14 @@ const Page = ({params:{slug}}:{params:{slug:string}}) => {
           <form onSubmit={onSubmit}>
             <p className="font-light mt-10">Code</p>
             <div className="flex flex-row gap-3">
-              <input className="border-slate-250 w-12 rounded-md border px-4 py-2 text-black" value={otp[0]} onChange={e => onOtpChange(e, 0)} disabled={isVerifyingOtp}/>
-              <input className="border-slate-250 w-12 rounded-md border px-4 py-2 text-black" value={otp[1]} onChange={e => onOtpChange(e, 1)} disabled={isVerifyingOtp}/>
-              <input className="border-slate-250 w-12 rounded-md border px-4 py-2 text-black" value={otp[2]} onChange={e => onOtpChange(e, 2)} disabled={isVerifyingOtp}/>
-              <input className="border-slate-250 w-12 rounded-md border px-4 py-2 text-black" value={otp[3]} onChange={e => onOtpChange(e, 3)} disabled={isVerifyingOtp}/>
-              <input className="border-slate-250 w-12 rounded-md border px-4 py-2 text-black" value={otp[4]} onChange={e => onOtpChange(e, 4)} disabled={isVerifyingOtp}/>
-              <input className="border-slate-250 w-12 rounded-md border px-4 py-2 text-black" value={otp[5]} onChange={e => onOtpChange(e, 5)} disabled={isVerifyingOtp}/>
-              <input className="border-slate-250 w-12 rounded-md border px-4 py-2 text-black" value={otp[6]} onChange={e => onOtpChange(e, 6)} disabled={isVerifyingOtp}/>
-              <input className="border-slate-250 w-12 rounded-md border px-4 py-2 text-black" value={otp[7]} onChange={e => onOtpChange(e, 7)} disabled={isVerifyingOtp}/>
+              <input className="border-slate-250 w-12 rounded-md border px-4 py-2 text-black" value={otp[0]} onChange={(e: React.ChangeEvent<HTMLInputElement>) => onOtpChange(e, 0)} disabled={isVerifyingOtp}/>
+              <input className="border-slate-250 w-12 rounded-md border px-4 py-2 text-black" value={otp[1]} onChange={(e: React.ChangeEvent<HTMLInputElement>) => onOtpChange(e, 1)} disabled={isVerifyingOtp}/>
+              <input className="border-slate-250 w-12 rounded-md border px-4 py-2 text-black" value={otp[2]} onChange={(e: React.ChangeEvent<HTMLInputElement>) => onOtpChange(e, 2)} disabled={isVerifyingOtp}/>
+              <input className="border-slate-250 w-12 rounded-md border px-4 py-2 text-black" value={otp[3]} onChange={(e: React.ChangeEvent<HTMLInputElement>) => onOtpChange(e, 3)} disabled={isVerifyingOtp}/>
+              <input className="border-slate-250 w-12 rounded-md border px-4 py-2 text-black" value={otp[4]} onChange={(e: React.ChangeEvent<HTMLInputElement>) => onOtpChange(e, 4)} disabled={isVerifyingOtp}/>
+              <input className="border-slate-250 w-12 rounded-md border px-4 py-2 text-black" value={otp[5]} onChange={(e: React.ChangeEvent<HTMLInputElement>) => onOtpChange(e, 5)} disabled={isVerifyingOtp}/>
+              <input className="border-slate-250 w-12 rounded-md border px-4 py-2 text-black" value={otp[6]} onChange={(e: React.ChangeEvent<HTMLInputElement>) => onOtpChange(e, 6)} disabled={isVerifyingOtp}/>
+              <input className="border-slate-250 w-12 rounded-md border px-4 py-2 text-black" value={otp[7]} onChange={(e: React.ChangeEvent<HTMLInputElement>) => onOtpChange(e, 7)} disabled={isVerifyingOtp}/>
             </div>
             <button
               type={"submit"}
