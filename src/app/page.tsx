@@ -12,7 +12,7 @@ import { useUser } from "./_context/user-context";
 const limit = 10;
 export default function Home() {
   const router = useRouter();
-const {dispatch, state} = useUser()
+  const { dispatch, state } = useUser();
   const [userId, setUserId] = useState("");
   const [page, setPage] = useState(0);
   const [userProducts, setUserProducts] = useState<number[]>([]);
@@ -32,21 +32,21 @@ const {dispatch, state} = useUser()
   });
 
   useEffect(() => {
-    if(user && state && (state.user.id !== user.id)){
-      dispatch({type: 'setUser', paylod: user})
+    if (user && state && state.user.id !== user.id) {
+      dispatch({ type: "setUser", paylod: user });
     }
-  },[user, dispatch, state])
+  }, [user, dispatch, state]);
 
-  const {data: fetchedUserProducts}  = api.userProducts.getProductsByUserId.useQuery({ userId: Number(userId) });
+  const { data: fetchedUserProducts } =
+    api.userProducts.getProductsByUserId.useQuery({ userId: Number(userId) });
 
   useEffect(() => {
-    if(fetchedUserProducts){
-      setUserProducts(fetchedUserProducts.map((item) => item.productId))
+    if (fetchedUserProducts) {
+      setUserProducts(fetchedUserProducts.map((item) => item.productId));
     }
-  },[fetchedUserProducts])
+  }, [fetchedUserProducts]);
 
-  console.log(fetchedUserProducts)
-
+  console.log(fetchedUserProducts);
 
   const { data: products, isLoading: isLoadingProducts } =
     api.products.getProducts.useQuery({ skip: page * limit, limit });
@@ -57,13 +57,12 @@ const {dispatch, state} = useUser()
     },
   });
 
-  const removeProductFromUser = api.userProducts.removeProductsFromUser.useMutation({
-    onSuccess: () => {
-      router.refresh();
-    },
-  });
-
-
+  const removeProductFromUser =
+    api.userProducts.removeProductsFromUser.useMutation({
+      onSuccess: () => {
+        router.refresh();
+      },
+    });
 
   const ProductItem = ({ name, id }: { name: string; id: number }) => {
     return (
@@ -71,12 +70,18 @@ const {dispatch, state} = useUser()
         <input
           checked={userProducts.includes(id)}
           onChange={(e) => {
-            if(e.target.checked){
+            if (e.target.checked) {
               setUserProducts([...userProducts, id]);
-              addProductToUser.mutate({ productId: id, userId: Number(userId) });
-            }else{
+              addProductToUser.mutate({
+                productId: id,
+                userId: Number(userId),
+              });
+            } else {
               setUserProducts(userProducts.filter((item) => item !== id));
-              removeProductFromUser.mutate({ productId: id, userId: Number(userId) });
+              removeProductFromUser.mutate({
+                productId: id,
+                userId: Number(userId),
+              });
             }
           }}
           id="checked-checkbox"
@@ -102,35 +107,57 @@ const {dispatch, state} = useUser()
               We will keep you notified
             </p>
             <h3 className="text-xl"> My saved interests!</h3>
-          <div className="flex flex-col gap-2 mt-4">
-            {products?.map((product) => (
-              <ProductItem
-                name={product.name}
-                id={product.id}
-                key={product.id}
-              />
-            ))}
+            <div className="mt-4 flex flex-col gap-2">
+              {isLoadingProducts && (
+                <div role="status" className="max-w-sm animate-pulse">
+                  <div className="mb-4 h-4 max-w-[360px] rounded-full bg-slate-100"></div>
+                  <div className="mb-4 h-4 max-w-[360px] rounded-full bg-slate-100"></div>
+                  <div className="mb-4 h-4 max-w-[360px] rounded-full bg-slate-100"></div>{" "}
+                  <div className="mb-4 h-4 max-w-[360px] rounded-full bg-slate-100"></div>{" "}
+                  <div className="mb-4 h-4 max-w-[360px] rounded-full bg-slate-100"></div>{" "}
+                  <div className="mb-4 h-4 max-w-[360px] rounded-full bg-slate-100"></div>{" "}
+                  <div className="mb-4 h-4 max-w-[360px] rounded-full bg-slate-100"></div>{" "}
+                  <div className="mb-4 h-4 max-w-[360px] rounded-full bg-slate-100"></div>
+                  <span className="sr-only">Loading...</span>
+                </div>
+              )}
+
+              {products?.map((product) => (
+                <ProductItem
+                  name={product.name}
+                  id={product.id}
+                  key={product.id}
+                />
+              ))}
             </div>
-            <div className="flex justify-center items-center gap-2">
+            <div className="flex items-center justify-center gap-2">
               <button
-                className="rounded-md py-1 px-2"
+                className="rounded-md px-2 py-1"
                 onClick={() => setPage(page - 1)}
                 disabled={page === 0}
               >
-                {'<'}
+                {"<"}
               </button>
-              {page > 1 && <p className="font-extralight text-slate-250">{page-1}</p>}
-            {page !== 0 && <p className="font-extralight text-slate-250">{page}</p>}
+              {page > 1 && (
+                <p className="font-extralight text-slate-250">{page - 1}</p>
+              )}
+              {page !== 0 && (
+                <p className="font-extralight text-slate-250">{page}</p>
+              )}
 
-            <p className="text-xl">{page + 1}</p>
-            {page !==9 && <p className="font-extralight text-slate-250">{page+2}</p>}
-            {page < 8 && <p className="font-extralight text-slate-250">{page+3}</p>}
+              <p className="text-xl">{page + 1}</p>
+              {page !== 9 && (
+                <p className="font-extralight text-slate-250">{page + 2}</p>
+              )}
+              {page < 8 && (
+                <p className="font-extralight text-slate-250">{page + 3}</p>
+              )}
               <button
-                className="rounded-md py-1 px-2"
+                className="rounded-md px-2 py-1"
                 onClick={() => setPage(page + 1)}
                 disabled={page === 9}
               >
-                {'>'}
+                {">"}
               </button>
             </div>
           </div>
