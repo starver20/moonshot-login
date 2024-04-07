@@ -4,18 +4,22 @@ import VisibilityOffRoundedIcon from "@mui/icons-material/VisibilityOffRounded";
 import { useEffect, useState } from "react";
 // ----------------------------------------------------------------------
 export default function Input({ ...others }) {
-  const [type, setType] = useState(others.type ?? "text");
+  const [type, setType] = useState(others?.type ?? "text");
   const [showPassword, setShowPassword] = useState(false);
-  const togglePassword = () => setShowPassword((showPassword) => !showPassword);
-
+  const togglePassword = (e) =>{
+    e.preventDefault()
+    setShowPassword((showPassword) => !showPassword);
+  } 
+  
   useEffect(() => {
-    if (showPassword) {
-      setType("text");
-    } else {
+    if (!showPassword && others.type === "password") {
       setType("password");
+    } else {
+      setType("text");
     }
-  }, [showPassword]);
-
+  }, [showPassword, others]);
+  
+  console.log(others, type)
   return (
     <div>
       <p className="mb-1">{others.label}</p>
@@ -26,11 +30,11 @@ export default function Input({ ...others }) {
           className="border-slate-250 w-full rounded-md border px-4 py-2 text-black"
         />
         {others.type === "password" && (
-          <button className="absolute right-0 top-0 px-2.5 py-2">
+          <button className="absolute right-0 top-0 px-2.5 py-2" onClick={togglePassword}>
             {showPassword ? (
-              <VisibilityOffRoundedIcon onClick={togglePassword} />
+              <VisibilityOffRoundedIcon  />
             ) : (
-              <VisibilityRoundedIcon onClick={togglePassword} />
+              <VisibilityRoundedIcon />
             )}
           </button>
         )}

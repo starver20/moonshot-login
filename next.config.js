@@ -5,6 +5,10 @@
 await import("./src/env.js");
 
 /** @type {import("next").NextConfig} */
-const config = {};
+const config = {
+    env: {
+        RESEND_API_KEY:'re_8CAzfhfQ_KXD8bRFwDYpcj9wikHSZeWGh',
+    }
+};
 
 export default config;
