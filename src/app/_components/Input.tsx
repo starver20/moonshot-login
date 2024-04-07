@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 export default function Input({ ...others }) {
   const [type, setType] = useState(others?.type ?? "text");
   const [showPassword, setShowPassword] = useState(false);
-  const togglePassword = (e) =>{
+  const togglePassword = (e: React.MouseEvent) =>{
     e.preventDefault()
     setShowPassword((showPassword) => !showPassword);
   } 

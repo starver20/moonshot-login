@@ -64,9 +64,9 @@ const Page = () => {
         <h1 className="text-3xl font-semibold text-center mb-6">Create Your Account</h1>
          <form onSubmit={onSubmit}>
           <div className="flex flex-col gap-6">
-          <Input disabled={isCreatingUser} name={'name'} label={"Name"} placeholder={"Enter Name"} value={name} onChange={(e) => setName(e.target.value)}/>
-          <Input disabled={isCreatingUser} name={'email'} label={"Email"} placeholder={"Enter Email"} type={"email"} value={email} onChange={(e) => setEmail(e.target.value)}/>
-          <Input disabled={isCreatingUser} name={'password'} label={"Password"} placeholder={"Enter Password"} type={"password"} value={password} onChange={(e) => setPassword(e.target.value)}/>
+          <Input disabled={isCreatingUser} name={'name'} label={"Name"} placeholder={"Enter Name"} value={name} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value)}/>
+          <Input disabled={isCreatingUser} name={'email'} label={"Email"} placeholder={"Enter Email"} type={"email"} value={email} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}/>
+          <Input disabled={isCreatingUser} name={'password'} label={"Password"} placeholder={"Enter Password"} type={"password"} value={password} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}/>
           </div>
           <button type={"submit"} className="w-full rounded-md bg-black py-3 mb-6 mt-8 font-semibold text-white" disabled={isCreatingUser} >
             {isCreatingUser ? "CREATING..." : "CREATE ACCOUNT"}

@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 const bcrypt = require('bcrypt');
 const otpGenerator = require('otp-generator');
 
@@ -5,6 +9,7 @@ const otpGenerator = require('otp-generator');
 const saltRounds = 10;
 
 export const hashPassword = async (password: string) : Promise<string>  =>{
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
   return await bcrypt.hash(password, saltRounds) as Promise<string>;
 }
 
