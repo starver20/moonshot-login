@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+// @ts-nocheck
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 
@@ -6,11 +10,8 @@ import { EmailTemplate } from '~/app/_components/email-template';
 
 const resend = new Resend(process.env.NEXT_PUBLIC_RESEND_API_KEY);
 
-/**
- * @param {{ json: () => PromiseLike<{ email: any; }> | { email: any; }; }} request
- * @param {any} response
- */
-export async function POST(request, response) {
+
+export async function POST(request) {
   const { email } = await request.json();
   try {
     // @ts-ignore
