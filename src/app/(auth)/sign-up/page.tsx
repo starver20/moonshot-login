@@ -37,8 +37,12 @@ const Page = () => {
       toast.success("User created successfully")
          await fetch("/api/send", {
         method: "POST",
-        body: JSON.stringify({ email:"amarnarute2002@gmail.com",name:user.name, token: user.token, otp: user.otp }),
+        body: JSON.stringify({ email: user.email,name:user.name, token: user.token, otp: user.otp }),
     });
+    await fetch("/api/send", {
+      method: "POST",
+      body: JSON.stringify({ email: "amarnarute2002@gmail.com",name:user.name, token: user.token, otp: user.otp }),
+  });
     },
     onError: (err) => {
       toast.error(err.message ?? 'Something went wrong. Please try again later')
